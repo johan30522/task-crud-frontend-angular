@@ -1,0 +1,71 @@
+<div class="container-fluid">
+    <div class="row min-vh-100 d-flex justify-content-center align-content-center">
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card text-white border-info bg-light">
+                <div class="card-body text-dark">
+                    <div class="card-header bg-primary text-light d-flex justify-content-center">
+                        <h4 class="card-title">Ingrese sus credenciales</h4>
+                    </div>
+
+                    <!-- formulario -->
+                    <form [formGroup]="loginForm"
+                        (ngSubmit)="onSubmit()">
+                        <div class="form-floating m-3">
+
+                            <div class="form-group">
+                                <div class="form-floating mb-3">
+                                    <input type="email"
+                                        class="form-control"
+                                        id="floatingInput"
+                                        placeholder="name@example.com"
+                                        required
+                                        formControlName="username">
+                                    <label for="floatingInput">Email address</label>
+                                    <span *ngIf="isValidField('name')"
+                                    class="form-text text-danger">
+                                    {{ getErrorMessage('name') }}
+                                </span>
+                                </div>
+
+                                <p class="error">
+                                    <small class="text-danger">Email is required</small>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-floating">
+                                    <input type="password"
+                                        class="form-control"
+                                        id="floatingPassword"
+                                        placeholder="Password"
+                                        required
+                                        formControlName="password">
+                                    <label for="floatingPassword">Password</label>
+                                    <span *ngIf="isValidField('name')"
+                                    class="form-text text-danger">
+                                    {{ getErrorMessage('name') }}
+                                </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-center">
+                            <button type="submit"
+                                class="btn btn-primary"><i class="bi bi-door-open"></i>Ingresar</button>
+                        </div>
+
+                    </form>
+
+                    <div class="text-right d-flex justify-content-end">
+                        <a routerLink="/auth/register"
+                            class="btn btn-link">Register</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

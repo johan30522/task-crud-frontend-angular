@@ -1,0 +1,58 @@
+<div class="row p-3">
+    <div class="col-12">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Catálogo de Tareas</h1>
+                    <div class="col-12 d-flex justify-content-around">
+                        <p>Mis Tareas</p>
+                        <button (click)="createTask()"
+                            class="btn btn-primary">
+                            <i class="bi bi-plus"></i>
+                            Crear tarea</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Nombre</th>
+                                <th>Estado</th>
+                                <th>Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let task of tasks;  let i = index">
+
+                                <td>{{ i+1 }}</td>
+                                <td>{{ task.name }}</td>
+                                <td>{{ task.status }}</td>
+                                <td>
+                                <!-- if  not have image get the generic no image forma assets -->
+                                <img [src]="getTaskImageUrl(task)"
+                                alt="{{ task.name }}"
+                                class="img-thumbnail"
+                                style="width: 100px;">
+                                </td>
+                                <td>
+                                    <button (click)="editTask(task)"
+                                        class="btn btn-primary">
+                                        <i class="bi bi-pencil"></i>
+                                        Editar</button>
+                                    <button class="btn btn-danger ms-2">
+                                        <i class="bi bi-trash"></i>
+                                        Eliminar</button>
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+
+
+        </div>
+    </div>

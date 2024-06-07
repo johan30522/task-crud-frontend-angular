@@ -1,0 +1,33 @@
+
+<div class="container mt-3">
+    <div class="card">
+      <div class="card-header">
+        <h5>
+           {{isEdit() ? 'Editar Imagen' : 'Agregar Imagen'}}
+        </h5>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+            <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)">
+            <button class="btn btn-secondary" (click)="triggerFileInput()">
+                <i class="bi bi-image"></i>
+                 Seleccionar
+            </button>
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger mt-md-2" role="alert">
+            {{ errorMessage }}
+          </div>
+        <div *ngIf="imageUrl" class="image-preview mt-3 position-relative">
+          <img [src]="imageUrl" class="img-thumbnail" alt="Vista Previa">
+          <button class="btn btn-danger btn-sm position-absolute top-right" (click)="onRemoveImage()">×</button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <button *ngIf="selectedFile" class="btn btn-primary mt-3" (click)="onUpload()">
+            <i class="bi bi-cloud-upload"></i>
+            {{isEdit() ? 'Actualizar' : 'Subir'}}
+            </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
