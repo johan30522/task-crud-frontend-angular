@@ -6,17 +6,22 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TestMaskComponent } from './components/test-mask/test-mask.component';
+import { IMaskModule } from 'angular-imask';
 
 @NgModule({
   declarations: [
     LoginPageComponent,
              RegisterPageComponent,
-             LayoutPageComponent
+             LayoutPageComponent,
+             TestMaskComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    IMaskModule
+  ],
+  providers: [],
 })
 export class AuthModule { }

@@ -25,7 +25,8 @@ import { UploaderImageCropperComponent } from './components/uploader-image-cropp
   imports: [
     CommonModule,
     TaskRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+ 
   ]
 })
 export class TaskModule { }

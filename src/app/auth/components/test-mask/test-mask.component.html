@@ -1,0 +1,13 @@
+<div class="container mt-3">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="maskTestForm">
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" class="form-control" formControlName="phone" [imask]="{ mask: '0000-0000' }">
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="maskTestForm.invalid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
