@@ -38,6 +38,10 @@ export class AuthService {
   public getUser(): User | undefined {
     return this.user;
   }
+//public setUser
+  public setUser(user: User): void {
+    this.user = user;
+  }
   //getter for token
   public getToken(): string | undefined {
     return this.token;
@@ -61,6 +65,8 @@ export class AuthService {
       password: password
     }).pipe(
       tap(response => this.user = response.user),
+      tap(response => this.token = response.token),
+      tap(response => this.csrfToken = response.csrfToken),
       tap(response => localStorage.setItem('user', JSON.stringify(response.user))),
       tap(response => localStorage.setItem('token', response.token)),
       tap(response => localStorage.setItem('csrfToken', response.csrfToken)),
@@ -78,16 +84,11 @@ export class AuthService {
 
   //Check if the user is authenticated
   public checkAuthenticationStatus(): Observable<boolean> {
-    console.log('checkAuthenticationStatus 1')
     if (!localStorage.getItem('token')) return new Observable<boolean>(observer => observer.next(false));
-    console.log('checkAuthenticationStatus 2')
     if (!localStorage.getItem('csrfToken')) return new Observable<boolean>(observer => observer.next(false));
 
-    console.log('checkAuthenticationStatus 3')
     const token = localStorage.getItem('token');
     const csrfToken = localStorage.getItem('csrfToken');
-
-    console.log('checkAuthenticationStatus 4', token, csrfToken);
 
     const headers = new HttpHeaders()
       .set('jwt-token', token!)
@@ -132,6 +133,16 @@ export class AuthService {
       errorResponse = error.error;
     }
     return throwError(() => errorResponse);
+  }
+
+  //validate email exists
+  validateEmail(email: string): Observable<boolean> {
+    console.log('validateEmailService', email);
+    return this.httpClient.get<{ existEmail: boolean }>(`${this.baseUrl}/auth/validate-email?email=${email}`)
+      .pipe(
+        tap(response => console.log('validateEmailService', response)),
+        map(response => !response.existEmail)
+      );
   }
 
 

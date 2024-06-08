@@ -1,95 +1,158 @@
 <div class="container-fluid">
     <div class="row min-vh-100 d-flex justify-content-center align-content-center">
-      <div class="col-12 col-sm-6 col-md-4">
-        <div class="card text-white border-info bg-light">
-          <div class="card-body text-dark">
-            <div class="card-header bg-primary text-light d-flex justify-content-center">
-              <h4 class="card-title">Registro de Usuario</h4>
-            </div>
-  
-            <!-- formulario de registro -->
-            <form 
-            [formGroup]="registerForm" 
-            (ngSubmit)="onRegister()"
-            autocomplete="off"
-            >
-              <div class="form-floating m-3">
-                <div class="form-group">
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingUsername" placeholder="Username" required formControlName="userName">
-                    <label for="floatingUsername">Username</label>
-                    <span *ngIf="isValidField('userName')" class="form-text text-danger">
-                      {{ getErrorMessage('userName') }}
-                    </span>
-                  </div>
-                </div>
-  
-                <div class="form-group">
-                  <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" required formControlName="email">
-                    <label for="floatingEmail">Email address</label>
-                    <span *ngIf="isValidField('email')" class="form-text text-danger">
-                      {{ getErrorMessage('email') }}
-                    </span>
-                  </div>
-                </div>
-  
-                <div class="form-group">
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingPhone" placeholder="Phone" required formControlName="phone"  [imask]="{ mask: '0000-0000' }">
-                    <label for="floatingPhone">Phone</label>
-                    <span *ngIf="isValidField('phone')" class="form-text text-danger">
-                      {{ getErrorMessage('phone') }}
-                    </span>
-                  </div>
-                </div>
-  
-                <div class="form-group">
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingAgeRange" placeholder="Age Range" required formControlName="ageRange">
-                    <label for="floatingAgeRange">Age Range</label>
-                    <span *ngIf="isValidField('ageRange')" class="form-text text-danger">
-                      {{ getErrorMessage('ageRange') }}
-                    </span>
-                  </div>
-                </div>
-  
-                <div class="form-group">
-                  <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required formControlName="password">
-                    <label for="floatingPassword">Password</label>
-                    <span *ngIf="isValidField('password')" class="form-text text-danger">
-                      {{ getErrorMessage('password') }}
-                    </span>
-                  </div>
-                </div>
-  
-                <div class="form-group">
-                  <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="Confirm Password" required formControlName="confirmPassword">
-                    <label for="floatingConfirmPassword">Confirm Password</label>
-                    <span *ngIf="isValidField('confirmPassword')" class="form-text text-danger">
-                      {{ getErrorMessage('confirmPassword') }}
-                    </span>
-                  </div>
-                </div>
-  
-              </div>
-  
-              <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary"><i class="bi bi-door-open"></i>Registrar</button>
-              </div>
-            </form>
-  
-            <div class="text-right d-flex justify-content-end">
-              <a routerLink="/auth/login" class="btn btn-link">Login</a>
-            </div>
-  
-          </div>
-        </div>
-      </div>
-    </div>
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card text-white border-info bg-light">
+                <div class="card-body text-dark">
+                    <div class="card-header bg-primary text-light d-flex justify-content-center">
+                        <h4 class="card-title">Registro de Usuario</h4>
+                    </div>
 
-    <app-test-mask/>
-  </div>
-  
+                    <!-- formulario de registro -->
+                    <form [formGroup]="registerForm"
+                        (ngSubmit)="onRegister()"
+                        autocomplete="off">
+                        <div class="form-floating m-3">
+                            <div class="form-group">
+                                <div class="form-floating mb-3">
+                                    <input type="text"
+                                        class="form-control"
+                                        id="floatingUsername"
+                                        placeholder="Username"
+                                        required
+                                        formControlName="userName">
+                                    <label for="floatingUsername">Username</label>
+                                    <span *ngIf="isValidField('userName')"
+                                        class="form-text text-danger">
+                                        {{ getErrorMessage('userName') }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-floating mb-3">
+                                    <input type="email"
+                                        class="form-control"
+                                        id="floatingEmail"
+                                        placeholder="name@example.com"
+                                        required
+                                        formControlName="email">
+                                    <label for="floatingEmail">Email address</label>
+                                    <span *ngIf="isValidField('email')"
+                                        class="form-text text-danger">
+                                        {{ getErrorMessage('email') }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-floating mb-3">
+                                    <input type="text"
+                                        class="form-control"
+                                        id="floatingPhone"
+                                        placeholder="Phone"
+                                        required
+                                        formControlName="phone"
+                                        [imask]="{ mask: '0000-0000' }">
+                                    <label for="floatingPhone">Phone</label>
+                                    <span *ngIf="isValidField('phone')"
+                                        class="form-text text-danger">
+                                        {{ getErrorMessage('phone') }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="ageRange">Age Range</label>
+                                <ngx-slider [options]="ageRangeOptions"
+                                    [(value)]="minAge"
+                                    [(highValue)]="maxAge"
+                                    (valueChange)="onAgeRangeChange()"
+                                    (highValueChange)="onAgeRangeChange()">
+                                </ngx-slider>
+                                <input type="hidden"
+                                    formControlName="ageRange" />
+                                <span *ngIf="isValidField('ageRange')"
+                                    class="form-text text-danger">
+                                    {{ getErrorMessage('ageRange') }}
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-floating mb-3">
+                                    <input type="password"
+                                        class="form-control"
+                                        id="floatingPassword"
+                                        placeholder="Password"
+                                        required
+                                        formControlName="password">
+                                    <label for="floatingPassword">Password</label>
+                                    <span *ngIf="isValidField('password')"
+                                        class="form-text text-danger">
+                                        {{ getErrorMessage('password') }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-floating mb-3">
+                                    <input type="password"
+                                        class="form-control"
+                                        id="floatingConfirmPassword"
+                                        placeholder="Confirm Password"
+                                        required
+                                        formControlName="confirmPassword">
+                                    <label for="floatingConfirmPassword">Confirm Password</label>
+                                    <span *ngIf="isValidField('confirmPassword')"
+                                        class="form-text text-danger">
+                                        {{ getErrorMessage('confirmPassword') }}
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button type="submit"
+                                class="btn btn-primary"><i class="bi bi-door-open"></i>Registrar</button>
+                        </div>
+                    </form>
+
+                    <div class="text-right d-flex justify-content-end">
+                        <a routerLink="/auth/login"
+                            class="btn btn-link">Login</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>Form Valid: {{registerForm.valid}} </h2>
+    <h2>Form invalid: {{registerForm.invalid}} </h2>
+    <h2>Form Status: {{registerForm.status}}</h2>
+    <h2>Form Pending:{{registerForm.pending}} </h2>
+    <h2>Form errors</h2>
+    <pre>{{ registerForm.errors| json }}</pre>
+    
+
+    
+    <h5>Email</h5>
+    <pre>{{ registerForm.controls['email'].errors| json }}</pre>
+    <h5>Phone</h5>
+    <pre>{{ registerForm.controls['phone'].errors| json }}</pre>
+    <h5>Password</h5>
+    <pre>{{ registerForm.controls['password'].errors| json }}</pre>
+    
+    
+    <!-- <h5>Username</h5>
+    <pre>{{ registerForm.controls['username'].errors| json }}</pre>
+
+    <h5>Phone</h5>
+    <pre>{{ registerForm.controls['phone'].errors| json }}</pre>
+    
+    
+    <h5>Password</h5>
+    <pre>{{ registerForm.controls['password'].errors| json }}</pre>
+    
+    <h5>Confirmar</h5>
+    <pre>{{ registerForm.controls['password2'].errors| json }}</pre> -->
+</div>

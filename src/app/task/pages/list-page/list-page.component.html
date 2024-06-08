@@ -30,7 +30,11 @@
 
                                 <td>{{ i+1 }}</td>
                                 <td>{{ task.name }}</td>
-                                <td>{{ task.status }}</td>
+                                <td>
+                                    <select class="form-select" [(ngModel)]="task.status" (change)="updateTaskStatus(task, $event)">
+                                        <option *ngFor="let status of (taskStatus | keyvalue)" [value]="status.value">{{ status.value }}</option>
+                                      </select>
+                                </td>
                                 <td>
                                 <!-- if  not have image get the generic no image forma assets -->
                                 <img [src]="getTaskImageUrl(task)"
@@ -56,3 +60,17 @@
 
         </div>
     </div>
+    <!-- Toast Container -->
+<!-- Toast Container -->
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 11">
+      <div *ngIf="showToast" class="toast show align-items-center text-bg-success border-0 fade show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            Tarea actualizada con éxito.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" (click)="hideToast()" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>

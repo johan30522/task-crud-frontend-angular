@@ -8,6 +8,7 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TestMaskComponent } from './components/test-mask/test-mask.component';
 import { IMaskModule } from 'angular-imask';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { IMaskModule } from 'angular-imask';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    IMaskModule
+    IMaskModule,
+    NgxSliderModule 
   ],
   providers: [],
 })

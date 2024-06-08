@@ -8,9 +8,11 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { TaskPageComponent } from './pages/task-page/task-page.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploaderImageComponent } from './components/uploader-image/uploader-image.component';
 import { UploaderImageCropperComponent } from './components/uploader-image-cropper/uploader-image-cropper.component';
+import { IMaskModule } from 'angular-imask';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 
 @NgModule({
@@ -26,6 +28,9 @@ import { UploaderImageCropperComponent } from './components/uploader-image-cropp
     CommonModule,
     TaskRoutingModule,
     ReactiveFormsModule,
+    IMaskModule,
+    NgxSliderModule ,
+    FormsModule
  
   ]
 })

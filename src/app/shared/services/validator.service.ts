@@ -8,8 +8,9 @@ export class ValidatorService {
 
   public firstNameAndLastnamePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
   public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-  public passworPattern: string = '^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,12}$';
-  public phonePattern: string = '^\d{4}-\d{4}$';
+  // public passworPattern: string = '^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,12}$';
+  public passwordPattern: string = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$';
+  public phonePattern: string = '^\\d{4}-\\d{4}$';
 
 
   public cantContainString = (control: FormControl): ValidationErrors | null => {
@@ -46,6 +47,8 @@ export class ValidatorService {
       return 'No se permite la cadena "abc"';
     } else if (errors?.['notEqual']) {
       return 'Las contraseñas no coinciden';
+    } else if (errors?.['emailExists']) {
+      return 'El email ya se encuentra registrado';
     }
 
     return 'Campo no válido';

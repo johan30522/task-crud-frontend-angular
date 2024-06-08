@@ -36,14 +36,10 @@ export class LoginPageComponent {
   public errorMessages: { [key: string]: string } = {};
 
   onSubmit() {
-    console.log('onSubmit', this.loginForm.value)
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
-    console.log('pasa validaciones');
-    console.log(this.loginForm.value);
-
     const { username, password } = this.loginForm.value;
 
     this.authService.login(username!, password!).subscribe({
