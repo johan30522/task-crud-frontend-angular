@@ -70,7 +70,10 @@ export class TaskEditPageComponent implements OnInit{
       return;
     }
     if (this.isEdit()) {
-      this.taskService.updateTask(this.currentTask).subscribe(() => {
+      console.log('updateTask', this.currentTask);
+      let taskToUpdate:Task = this.currentTask;
+      taskToUpdate.id = this.task.id;
+      this.taskService.updateTask(taskToUpdate).subscribe(() => {
         this.successfulTransaction.emit(true);
         this.closeModal();
       });

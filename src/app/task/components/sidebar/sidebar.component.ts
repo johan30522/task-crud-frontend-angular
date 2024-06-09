@@ -22,6 +22,11 @@ export class SidebarComponent implements OnInit{
     this.user = this.authService.getUser();
   }
 
+  // getteer for user
+  get userInfo(): User {
+    return this.authService.getUser()!;
+  }
+
 
   logout() {
     console.log('logout');

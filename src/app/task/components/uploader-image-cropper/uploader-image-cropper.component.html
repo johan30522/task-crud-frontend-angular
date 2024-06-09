@@ -1,10 +1,7 @@
-<!-- src/app/components/image-upload/uploader-image-cropper.component.html -->
 <div class="container mt-3">
     <div class="card">
         <div class="card-header">
-            <h5>
-                {{ isEdit() ? 'Editar Imagen' : 'Agregar Imagen' }}
-            </h5>
+            <h5>{{ isEdit() ? 'Editar Imagen' : 'Agregar Imagen' }}</h5>
         </div>
         <div class="card-body">
             <div class="form-group">
@@ -29,17 +26,13 @@
                     (imageCropped)="imageCropped($event)"
                     (imageLoaded)="imageLoaded($event)"
                     (cropperReady)="cropperReady()"
-                    (loadImageFailed)="loadImageFailed()">
-                </image-cropper>
+                    (loadImageFailed)="loadImageFailed()"></image-cropper>
             </div>
             <div *ngIf="!imageChangedEvent && imageUrl"
                 class="image-preview mt-3 position-relative">
-                <!-- if not image get generic no-image from assets -->
                 <img [src]="imageUrl ? imageUrl : 'assets/images/no-image.jpg'"
                     class="img-thumbnail"
                     alt="Vista Previa">
-                <button class="btn btn-danger btn-sm position-absolute top-right"
-                    (click)="onRemoveImage()">×</button>
             </div>
             <div class="d-flex justify-content-center align-items-center">
                 <button *ngIf="imageChangedEvent && !errorMessage"
@@ -54,8 +47,9 @@
     <div *ngIf="isSaving"
         class="overlay">
         <div class="spinner-border text-light"
-            role="status">
-        </div>
-        <span class="sr-only text-light ms-3"><h4>  Loading....</h4></span>
+            role="status"></div>
+        <span class="sr-only text-light ms-3">
+            <h4>Loading...</h4>
+        </span>
     </div>
 </div>

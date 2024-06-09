@@ -8,56 +8,91 @@
         aria-label="Close"></button>
 </div>
 <div class="modal-body">
-    <form [formGroup]="taskForm"
-        (ngSubmit)="onSubmit()"
-        autocomplete="off">
-        <div class="form-floating m-1">
-            <div class="form-group">
-                <div class="form-floating mb-3">
-                    <input type="text"
-                        class="form-control"
-                        id="name"
-                        formControlName="name"
-                        placeholder="Nombre"
-                        required>
-                    <label for="name">Nombre</label>
-                    <span *ngIf="isValidField('name')"
-                        class="form-text text-danger">
-                        {{ getErrorMessage('name') }}
-                    </span>
+    <ul class="nav nav-tabs"
+        id="myTab"
+        role="tablist">
+        <li class="nav-item"
+            role="presentation">
+            <button class="nav-link active"
+                id="task-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#task"
+                type="button"
+                role="tab"
+                aria-controls="task"
+                aria-selected="true">Tarea</button>
+        </li>
+        <li class="nav-item"
+            role="presentation">
+            <button class="nav-link"
+                id="image-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#image"
+                type="button"
+                role="tab"
+                aria-controls="image"
+                aria-selected="false">Imagen</button>
+        </li>
+    </ul>
+    <div class="tab-content"
+        id="myTabContent">
+        <div class="tab-pane fade show active"
+            id="task"
+            role="tabpanel"
+            aria-labelledby="task-tab">
+            <form [formGroup]="taskForm"
+                (ngSubmit)="onSubmit()"
+                autocomplete="off">
+                <div class="form-floating m-1">
+                    <div class="form-group">
+                        <div class="form-floating mb-3">
+                            <input type="text"
+                                class="form-control"
+                                id="name"
+                                formControlName="name"
+                                placeholder="Nombre"
+                                required>
+                            <label for="name">Nombre</label>
+                            <span *ngIf="isValidField('name')"
+                                class="form-text text-danger">
+                                {{ getErrorMessage('name') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-floating mb-3">
+                            <select class="form-select"
+                                id="status"
+                                formControlName="status"
+                                required>
+                                <option *ngFor="let status of taskStatusValues"
+                                    [value]="status">{{ status }}</option>
+                            </select>
+                            <label for="status">Estado</label>
+                            <span *ngIf="isValidField('status')"
+                                class="form-text text-danger">
+                                {{ getErrorMessage('status') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex justify-content-around">
+                        <button type="submit"
+                            class="btn btn-primary">Guardar</button>
+                        <button type="button"
+                            class="btn btn-secondary"
+                            (click)="closeModal()"
+                            data-bs-dismiss="modal">Cancelar</button>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="form-floating mb-3">
-                    <select class="form-select"
-                        id="status"
-                        formControlName="status"
-                        required>
-                        <option *ngFor="let status of taskStatusValues"
-                            [value]="status">{{ status }}</option>
-                    </select>
-                    <label for="status">Estado</label>
-                    <span *ngIf="isValidField('status')"
-                        class="form-text text-danger">
-                        {{ getErrorMessage('status') }}
-                    </span>
-                </div>
-            </div>
-
-            <div class="form-group d-flex justify-content-around">
-                <button type="submit"
-                    class="btn btn-primary">Guardar</button>
-                <button type="button"
-                    class="btn btn-secondary"
-                    (click)="closeModal()"
-                    data-bs-dismiss="modal">Cancelar</button>
-            </div>
+            </form>
         </div>
-    </form>
-
-    <task-uploader-image-cropper *ngIf="isEdit()"
-        [taskId]="task.id"
-        (refreshParent)="updateParent()" />
-
-
+        <div class="tab-pane fade"
+            id="image"
+            role="tabpanel"
+            aria-labelledby="image-tab">
+            <task-uploader-image-cropper *ngIf="isEdit()"
+                [taskId]="task.id"
+                (refreshParent)="updateParent()"></task-uploader-image-cropper>
+        </div>
+    </div>
 </div>

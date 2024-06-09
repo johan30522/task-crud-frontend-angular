@@ -13,6 +13,7 @@ import { UploaderImageComponent } from './components/uploader-image/uploader-ima
 import { UploaderImageCropperComponent } from './components/uploader-image-cropper/uploader-image-cropper.component';
 import { IMaskModule } from 'angular-imask';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { ConfirmDeleteComponent } from './components/confirm-delete/confirm-delete.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     TaskPageComponent,
     SidebarComponent,
     UserEditComponent,
-    UploaderImageComponent
+    UploaderImageComponent,
+    ConfirmDeleteComponent
   ],
   imports: [
     CommonModule,

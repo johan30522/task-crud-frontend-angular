@@ -3,6 +3,7 @@ import { TaskService } from '../../services/task.service';
 import { Task, TaskStatus } from '../../interfaces/Task.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TaskEditPageComponent } from '../task-edit-page/task-edit-page.component';
+import { ConfirmDeleteComponent } from '../../components/confirm-delete/confirm-delete.component';
 
 @Component({
   selector: 'app-list-page',
@@ -14,6 +15,7 @@ export class ListPageComponent implements OnInit{
   public tasks: Task[] = [];
   public taskStatus = TaskStatus;
   public showToast = false;
+  public msgToast = 'Tarea actualizada correctamente';
 
   constructor(
     private taskService: TaskService,
@@ -49,8 +51,22 @@ export class ListPageComponent implements OnInit{
       this.loadItems();
     });
   }
-  deleteteTask() {
-    console.log('deleteteTask');
+  deleteTask(task: Task) {
+    const modalRef = this.modalService.open(ConfirmDeleteComponent);
+    modalRef.componentInstance.taskName = task.name;
+    modalRef.componentInstance.deleteConfirmed.subscribe(() => {
+      this.taskService.deleteTask(task.id).subscribe({
+        next: () => {
+          console.log('Task deleted');
+          this.tasks = this.tasks.filter(t => t.id !== task.id);
+          this.msgToast = `Tarea "${task.name}" eliminada correctamente`;
+          this.showSuccessToast();
+        },
+        error: err => {
+          console.error('Failed to delete task', err);
+        }
+      });
+    });
   }
 
   updateTaskStatus(task: Task,  event: Event) {
@@ -62,6 +78,7 @@ export class ListPageComponent implements OnInit{
       next: () => {
         console.log('Task status updated');
         task.status = status as TaskStatus;
+        this.msgToast = `Tarea "${task.name}" actualizada correctamente`;
         this.showSuccessToast();
       },
       error: err => {
@@ -78,6 +95,7 @@ export class ListPageComponent implements OnInit{
       keyboard: false
 
     });
+    console.log('llama a editTask', task);
 
     modalRef.componentInstance.task = task;
     modalRef.componentInstance.successfulTransaction.subscribe(() => {
