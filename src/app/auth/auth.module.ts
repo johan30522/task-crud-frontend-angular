@@ -9,13 +9,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TestMaskComponent } from './components/test-mask/test-mask.component';
 import { IMaskModule } from 'angular-imask';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { UserTaskWizardComponent } from './components/user-task-wizard/user-task-wizard.component';
 
 @NgModule({
   declarations: [
     LoginPageComponent,
              RegisterPageComponent,
              LayoutPageComponent,
-             TestMaskComponent
+             TestMaskComponent,
+             UserTaskWizardComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginResponse, User, UserRegister } from '../interfaces/user.interface';
+import { LoginResponse, User, UserRegister, UserRegisterWithTasks } from '../interfaces/user.interface';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environments';
@@ -77,6 +77,14 @@ export class AuthService {
   //register
   public register(user: UserRegister): Observable<User | ErrorResponse> {
     return this.httpClient.post<User>(`${this.baseUrl}/auth/register`, user)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  //register with tasks
+  public registerWithTasks(user: UserRegisterWithTasks): Observable<User | ErrorResponse> {
+    return this.httpClient.post<User>(`${this.baseUrl}/auth/register-with-tasks`, user)
     .pipe(
       catchError(this.handleError)
     );

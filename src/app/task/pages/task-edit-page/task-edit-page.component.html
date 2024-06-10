@@ -23,7 +23,8 @@
                 aria-selected="true">Tarea</button>
         </li>
         <li class="nav-item"
-            role="presentation">
+            role="presentation"
+            >
             <button class="nav-link"
                 id="image-tab"
                 data-bs-toggle="tab"
@@ -31,6 +32,7 @@
                 type="button"
                 role="tab"
                 aria-controls="image"
+                *ngIf="isEdit()"
                 aria-selected="false">Imagen</button>
         </li>
     </ul>
