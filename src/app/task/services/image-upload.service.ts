@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CloudinaryResponse } from '../interfaces/CloudinaryResponse';
+import { environment } from '../../../environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageUploadService {
 
-  private cloudinaryUrl = 'https://api.cloudinary.com/v1_1/personal-johan/upload';
+  private cloudinaryUrl = environment.cloudinaryUrl;
   private uploadPreset = 'crud-task-app';
 
   constructor(private http: HttpClient) {}

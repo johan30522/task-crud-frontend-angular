@@ -8,7 +8,6 @@ export class ValidatorService {
 
   public firstNameAndLastnamePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
   public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-  // public passworPattern: string = '^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,12}$';
   public passwordPattern: string = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$';
   public phonePattern: string = '^\\d{4}-\\d{4}$';
 
